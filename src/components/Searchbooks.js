@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import './App.css'
+import '../App.css'
 
 class Search extends Component {
     state = {
@@ -41,3 +41,5 @@ class Search extends Component {
         )
     }
 }
+
+export default Search
