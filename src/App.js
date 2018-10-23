@@ -2,7 +2,7 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 // import components 
-import BookCase from './components/BookCase';
+import BookCase from './components/BookCase'
 
 class BooksApp extends React.Component {
   state = {

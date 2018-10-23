@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import * as BooksAPI from './BooksAPI'
-import Book from "./Book";
+import Book from "./Books";
 
 
 class Bookshelf extends Component {
@@ -22,7 +22,7 @@ class Bookshelf extends Component {
 
                     <ol className="books-grid">
 
-                        <Books />
+                        <Book />
 
                     </ol>
                 
