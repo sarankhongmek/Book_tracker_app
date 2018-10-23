@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import BookShelf from "./BookShelf";
+import { Link } from 'react-router-dom'
 
 class BookCase extends Component  { 
     state ={}
     
     render () {
+        let shelves = [];
 
         return (
+
             //main app
             
             <div className="app">
@@ -26,8 +29,10 @@ class BookCase extends Component  {
                     <div className="list-books-content">
 
                         <div>
-
-                            <BookShelf />
+                          
+                            <BookShelf title='Currently Reading'/>
+                            <BookShelf title='Want To Read'/>
+                            <BookShelf title='Read'/>
 
                         </div>
                     
@@ -36,7 +41,7 @@ class BookCase extends Component  {
 
                     <div className="open-search">
 
-                        <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                        <Link to='/search' onClick={() => this.setState({ showSearchPage: true })}>Add a book</Link>
 
                     </div>
 
