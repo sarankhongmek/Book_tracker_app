@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 class Option extends Component {
     state = {}
 
+
     render() {
         return (
 
@@ -11,7 +12,7 @@ class Option extends Component {
             <div className="book-shelf-changer">
 
 
-                <select>
+                <select value={this.props.book.shelf} onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)}>
 
 
                     <option value="move" disabled>Move to...</option>

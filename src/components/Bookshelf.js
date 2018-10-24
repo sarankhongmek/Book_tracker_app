@@ -5,6 +5,10 @@ import Book from "./Books";
 class Bookshelf extends Component {
     state = {}
 
+    componentDidMount(){
+        //console.log(this)
+    }
+
     render(){
 
         return(
@@ -21,7 +25,9 @@ class Bookshelf extends Component {
 
                     <ol className="books-grid">
 
-                        <Book />
+                        
+                        {this.props.books.map((book,key) => <Book updateShelf={this.props.updateShelf} book={book} key={key}/> )}
+
 
                     </ol>
                 

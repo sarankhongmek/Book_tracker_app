@@ -4,24 +4,36 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 
 class BookCase extends Component  { 
-    state ={
-        books:[],
-        currentReading:[],
-        wantToRead:[],
-        read:[]
+    constructor(props){
+        super(props);
+        this.state ={
+            books:[],
+        }
     }
+
     
 //getall books from api request
     componentDidMount(){
         BooksAPI.getAll().then((books) => {
             this.setState({ books })
-            console.log(books)
+            //console.log(books)
         })
+
     }
 
-    render () {
-        let shelves = [];
+    updateShelf = (book,shelf) => {
+        BooksAPI.update(book.shelf).then(resp => {
+            book.shelf = shelf;
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat([book])
+            }));
+        });
+    }
 
+
+    render () {
+        
+        
         return (
 
             //main app
@@ -44,9 +56,9 @@ class BookCase extends Component  {
 
                         <div>
                     
-                            <BookShelf title='Currently Reading'/>
-                            <BookShelf title='Want To Read'/>
-                            <BookShelf title='Read'/>
+                            <BookShelf title='Currently Reading' updateShelf={this.updateShelf} books={this.state.books.filter(b => b.shelf === 'currentlyReading')}/>
+                            <BookShelf title='Want To Read' updateShelf={this.updateShelf} books={this.state.books.filter(b => b.shelf === 'wantToRead')}/>
+                            <BookShelf title='Read' updateShelf={this.updateShelf} books={this.state.books.filter(b => b.shelf === 'read')}/>
 
                         </div>
                     
