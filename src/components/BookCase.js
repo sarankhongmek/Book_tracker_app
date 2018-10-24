@@ -8,26 +8,19 @@ class BookCase extends Component  {
         books:[],
         currentReading:[],
         wantToRead:[],
-        read:[],
-        addBooks: books => {}
+        read:[]
     }
     
 //getall books from api request
-     componentDidMount(){
+    componentDidMount(){
         BooksAPI.getAll().then((books) => {
             this.setState({ books })
-            //console.log(books)
+            console.log(books)
         })
-        const books = BooksAPIgetAll();
-        const current = books.filter(book => book.shelf === 'currentReading');
-        const want = books.filter(book => book.shelf === 'wantToRead');
-        const read = books.filter(book => book.shelf === 'read');
-        console.log(current, want ,read);
     }
 
-
     render () {
-        
+        let shelves = [];
 
         return (
 
