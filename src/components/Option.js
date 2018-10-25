@@ -12,7 +12,7 @@ class Option extends Component {
             <div className="book-shelf-changer">
 
 
-                <select value={this.props.book.shelf} onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)}>
+                <select value={this.props.book.shelf || 'none'} onChange={(e) => this.props.updateShelf(this.props.book, e.target.value)}>
 
 
                     <option value="move" disabled>Move to...</option>

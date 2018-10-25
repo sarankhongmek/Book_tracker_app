@@ -5,9 +5,7 @@ import Book from "./Books";
 class Bookshelf extends Component {
     state = {}
 
-    componentDidMount(){
-        //console.log(this)
-    }
+ 
 
     render(){
 

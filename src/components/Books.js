@@ -4,9 +4,7 @@ import Option from "./Option";
 
 class Book extends Component {
     state = {}
-    componentDidMount(){
-        console.log(this)
-    }
+ 
     render(){
 
         return (

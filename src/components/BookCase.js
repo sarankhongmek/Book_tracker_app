@@ -22,7 +22,7 @@ class BookCase extends Component  {
     }
 
     updateShelf = (book,shelf) => {
-        BooksAPI.update(book.shelf).then(resp => {
+        BooksAPI.update(book,shelf).then(resp => {
             book.shelf = shelf;
             this.setState(state => ({
                 books: state.books.filter(b => b.id !== book.id).concat([book])
