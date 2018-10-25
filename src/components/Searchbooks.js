@@ -15,7 +15,7 @@ class Search extends Component {
     componentDidMount(){
         BooksAPI.getAll().then((res) => {
             this.setState({ books: res })
-            //console.log(books)
+            
         })
     }
 
@@ -46,7 +46,9 @@ class Search extends Component {
             else {
                 res.forEach(b => {
                     let f = this.state.books.filter(bookid => bookid.id === b.id);
-                    b.shelf = f[0] ? f.shelf : null;
+                    if(f[0]){
+                        b.shelf = f[0].shelf;
+                    }
                 })
                 return this.setState({results: res});
             }
@@ -64,7 +66,7 @@ class Search extends Component {
                 <div className="search-books-bar">
 
 
-                    <Link to='/' className="close-search" onClick={() => this.setState({showSearchPage: false})}>Close</Link>
+                    <Link to='/' className="close-search">Close</Link>
 
 
                     <div className="search-books-input-wrapper">

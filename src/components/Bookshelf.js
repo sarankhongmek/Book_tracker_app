@@ -3,7 +3,6 @@ import Book from "./Books";
 
 
 class Bookshelf extends Component {
-    state = {}
 
  
 
