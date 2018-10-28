@@ -12,6 +12,7 @@ class Search extends Component {
     }
 
 
+
     componentDidMount(){
         BooksAPI.getAll().then((res) => {
             this.setState({ books: res })
@@ -30,30 +31,38 @@ class Search extends Component {
     }
 
 
-    updateQuery = (query) => {
-        this.setState({ query: query }, this.searchResult);
+    updateQuery = (value) => {
+        this.setState({ query: value }, this.searchResult);
     }
 
 
     searchResult  () {
-        if (this.state.query === '' || this.state.query === undefined) {
-            return this.setState({ results: []});
+        if (this.state.query === ""  || this.state.query === undefined) {
+            this.setState({error: false, results: []});
+            return;
         }
-        BooksAPI.search(this.state.query.trim()).then(res => {
-            if(res.error) {
-                return this.setState({results: []});
-            }
-            else {
-                res.forEach(b => {
+
+
+        BooksAPI.search(this.state.query).then(response => {
+            if (response === undefined || (response.error && response.error !== "empty query")) {
+                return this.setState({results: [] })
+            } else if (response.length) {
+                response.forEach(b => {
                     let f = this.state.books.filter(bookid => bookid.id === b.id);
                     if(f[0]){
                         b.shelf = f[0].shelf;
                     }
                 })
-                return this.setState({results: res});
+         
+                this.setState({ results: response});
             }
+            
         })
     }
+
+
+
+
 
 
     render() {
@@ -71,7 +80,7 @@ class Search extends Component {
 
                     <div className="search-books-input-wrapper">
 
-                            <input type="text" placeholder="Search by title or author" onChange={(e) => this.updateQuery(e.target.value)} value={this.state.query}/>
+                            <input type="text" placeholder="Search by title or author" onChange={(e) => this.updateQuery(e.target.value)} value={this.state.query.value}/>
 
                     </div>
 
@@ -82,7 +91,7 @@ class Search extends Component {
                 <div className="search-books-results">
 
 
-                    <ol className="books-grid">{this.state.results.map((item,key) => <Book key={key} book={item} updateShelf={this.updateShelf}/>)}</ol>
+                    <ol className="books-grid">{this.state.results && this.state.results.map((item,key) => (<li key={key}>  <Book book={item} updateShelf={this.updateShelf}/> </li>))}</ol>
 
 
                 </div>
