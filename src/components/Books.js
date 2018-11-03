@@ -10,7 +10,7 @@ class Book extends Component {
         return (
             
 
-            <li>
+            
 
 
                 <div className="book">
@@ -47,7 +47,7 @@ class Book extends Component {
                 </div>
 
 
-            </li>
+            
 
 
         )
